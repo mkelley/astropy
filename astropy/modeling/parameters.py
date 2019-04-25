@@ -77,7 +77,7 @@ def _binary_arithmetic_operation(op, reflected=False):
             return NotImplemented
 
         if self.unit is not None:
-            self_value = Quantity(self.value, self.unit)
+            self_value = Quantity(self.value, self.unit, subok=True)
         else:
             self_value = self.value
 
@@ -103,7 +103,7 @@ def _binary_comparison_operation(op):
                 return NotImplemented
 
         if self.unit is not None:
-            self_value = Quantity(self.value, self.unit)
+            self_value = Quantity(self.value, self.unit, subok=True)
         else:
             self_value = self.value
 
@@ -119,7 +119,7 @@ def _unary_arithmetic_operation(op):
             return NotImplemented
 
         if self.unit is not None:
-            self_value = Quantity(self.value, self.unit)
+            self_value = Quantity(self.value, self.unit, subok=True)
         else:
             self_value = self.value
 
@@ -910,7 +910,7 @@ class Parameter(OrderedDescriptor):
         arr = np.asarray(self.value, dtype=dtype)
 
         if self.unit is not None:
-            arr = Quantity(arr, self.unit, copy=False)
+            arr = Quantity(arr, self.unit, copy=False, subok=True)
 
         return arr
 
